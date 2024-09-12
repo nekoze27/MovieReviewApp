@@ -16,7 +16,7 @@ import { NextArrow, PrevArrow } from './Arrows'
 import styles from '@emotion/styled'
 import { useRouter } from 'next/router'
 
-export default function MovieList({ title, nowPlayingMovies }) {
+export default function MovieList({ title, topRatedMovies }) {
   const router = useRouter()
 
   const handleClick = id => {
@@ -25,8 +25,8 @@ export default function MovieList({ title, nowPlayingMovies }) {
   const settings = {
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
-    slidesToScroll:4,
+    slidesToShow: 4,
+    slidesToScroll:3,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive: [
@@ -92,7 +92,7 @@ export default function MovieList({ title, nowPlayingMovies }) {
           <CardContent sx={{ padding: '24px' }}>
             <Typography variant="h5" component="h3" fontWeight="bold">{title}</Typography>
             <Slider {...settings}>
-              {nowPlayingMovies.map(movie => (
+              {topRatedMovies.map(movie => (
                 <Card key={movie.id} sx={{ mt: 2 }}>
                   <CardActionArea 
                     onClick={() => handleClick(movie.id)}
@@ -105,7 +105,7 @@ export default function MovieList({ title, nowPlayingMovies }) {
                     />
                   </CardActionArea>
                   <CardContent>
-                    <Typography variant="h6" fontWeight="bold" noWrap textAlign="center">
+                    <Typography variant="h6" fontWeight="bold" textAlign="center" noWrap>
                       {movie.title}
                     </Typography>
                   </CardContent>

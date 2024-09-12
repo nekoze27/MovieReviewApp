@@ -1,6 +1,6 @@
 import AppLayout from '@/components/Layouts/AppLayout'
 import laravelApiClient from '@/lib/laravelApiClient'
-import { Card, CardMedia, Grid, Link, Box, Typography } from '@mui/material'
+import { Card, CardMedia, CardActionArea, CardContent, Grid, Link, Box, Typography } from '@mui/material'
 import Head from 'next/head'
 import React from 'react'
 import useSWR from 'swr'
@@ -23,9 +23,10 @@ function like() {
         </h2>
       }>
         <Head>
-          <title>Like - MovieReview</title>
+          <title>いいねした映画 - MovieReview</title>
         </Head>
-        <Box py={3} px={5}>
+        
+        {/* <Box py={3} px={5}>
           <Box maxWidth="lg" mx="auto">
             <Grid container spacing={3} >
               {likeItems?.map(item => (
@@ -47,6 +48,30 @@ function like() {
                 </Grid>
               ))}
             </Grid>
+          </Box>
+        </Box> */}
+        <Box py={3} px={5}>
+          <Box maxWidth="lg" mx="auto">
+            {/* いいねした映画のリスト */}
+            <Box display="grid" gridTemplateColumns="repeat(auto-fill, minmax(200px, 1fr))" gap={2}>
+              {likeItems?.map((item) => (
+                <Card key={item.id}>
+                  <CardActionArea onClick={() => handleClick(item.id)}>
+                    <CardMedia
+                      component="img"
+                      image={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                      alt={item.title}
+                      sx={{ objectFit: 'cover', height: '400px' }}
+                    />
+                    <CardContent>
+                      <Typography variant="h6" fontWeight="bold">
+                        {item.title}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              ))}
+            </Box>
           </Box>
         </Box>
     </AppLayout>

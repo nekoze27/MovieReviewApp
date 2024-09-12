@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { Box, CircularProgress, Grid, Typography } from '@mui/material'
+import { Box, CircularProgress, Card, CardActionArea, CardMedia, CardContent, Grid, Typography } from '@mui/material'
 import AppLayout from '@/components/Layouts/AppLayout'
 import Head from 'next/head'
 import Search from '@/components/Search'
@@ -52,7 +52,7 @@ export default function SearchResults() {
         </h2>
       }>
       <Head>
-        <title>Dash board - MovieReviw</title>
+        <title>検索結果 - MovieReviw</title>
       </Head>
 
       <Search onSearch={handleSearch} />
@@ -61,7 +61,8 @@ export default function SearchResults() {
           <Typography variant="h4" fontWeight="bold" sx={{ mb: 3 }}>
             検索結果: {query}
           </Typography>
-          <Grid container spacing={3}>
+
+          {/* <Grid container spacing={3}>
             {movies.map(movie => (
               <Grid item xs={12} sm={6} md={4} key={movie.id}>
                 <Link href={`/detail/movie/${movie.id}`} passHref>
@@ -79,6 +80,29 @@ export default function SearchResults() {
               </Grid>
             ))}
           </Grid>
+        </Box> */}
+        <Box display="grid" gridTemplateColumns="repeat(auto-fill, minmax(200px, 1fr))" gap={2}>
+            {movies.map((movie) => (
+              <Card key={movie.id}>
+                <CardActionArea component={Link} href={`/detail/movie/${movie.id}`}>
+                  <CardMedia
+                    component="img"
+                    image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt={movie.title}
+                    sx={{ height: '300px', objectFit: 'cover' }}
+                  />
+                  <CardContent>
+                    <Typography variant="h6" fontWeight="bold">
+                      {movie.title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      公開日: {movie.release_date} 
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            ))}
+          </Box>
         </Box>
       </Box>
     </AppLayout>

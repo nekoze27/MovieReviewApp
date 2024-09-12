@@ -40,6 +40,24 @@ const Navigation = ({ user }) => {
                         </div>
 
                         <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <NavLink href="/nowPlaying" active={router.pathname === '/nowPlaying'}>
+                                日本で上映中の映画
+                            </NavLink>
+                        </div>
+
+                        <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <NavLink href="/popular" active={router.pathname === '/popular'}>
+                                人気の映画
+                            </NavLink>
+                        </div>
+
+                        <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <NavLink href="/topRated" active={router.pathname === '/topRated'}>
+                                高評価の映画
+                            </NavLink>
+                        </div>
+
+                        <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                             <NavLink href="/like" active={router.pathname === '/like'}>
                                 いいねした映画
                             </NavLink>

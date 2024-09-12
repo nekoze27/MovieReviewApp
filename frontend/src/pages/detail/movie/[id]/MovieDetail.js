@@ -60,6 +60,12 @@ export default function MovieDetail({ movie }) {
             <Typography variant="body1" component="p" sx={{ mt: '10px' }}>
               公開日: {movie.release_date}
             </Typography>
+            <Typography variant="body1" component="p" sx={{ mt: '10px' }}>
+              ジャンル: {movie.genres.map(genre => genre.name).join(', ')}
+            </Typography>
+            <Typography variant="body1" component="p" sx={{ mt: '10px' }}>
+              ホームページ: <a href={movie.homepage} target="_blank" rel="noopener noreferrer">{movie.homepage}</a>
+            </Typography>
           </Grid>
         </Grid>
       </Box>

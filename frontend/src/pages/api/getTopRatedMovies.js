@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
   try {
     const response = await fetch(
-      `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.TMDB_API_KEY}&language=ja-JP&region=JP`,
+      `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&language=ja-JP&sort_by=vote_average.desc&vote_count.gte=100`,
     )
     if (!response.ok) {
       throw new Error('Network response was not ok')
